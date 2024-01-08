@@ -46,8 +46,8 @@
      {{- if (index .Env "HIVE_CONF_PARAMS")  }}
         {{- $conf_list := .Env.HIVE_CONF_PARAMS | strings.Split ";" }}
         {{- range $parameter := $conf_list}}
-            {{- $key := regexp.Replace "(.*):" "$1"  $parameter }}
-            {{- $value := regexp.Replace ".*:(.*)" "$1"  $parameter }}
+            {{- $key := regexp.Replace "([^=]+)=([^=]+)" "$1"  $parameter }}
+            {{- $value := regexp.Replace "([^=]+)=([^=]+)" "$2"  $parameter }}
         <property>
           <name>{{ $key }}</name>
           <value>{{ $value }}</value>

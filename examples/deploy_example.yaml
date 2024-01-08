@@ -3,14 +3,19 @@ replicaCount: 1
 
 env:
   HIVE_DB_EXTERNAL: "true"
-  HIVE_DB_HOST: "hostname:5432"
-  HIVE_DB_NAME: metastore_db
-  HIVE_DB_USER: michael_scott
-  HIVE_DB_PASS: thats-what-she-said
-  HIVE_CONF_PARAMS: hive.metastore.event.db.notification.api.auth:false;hadoop.proxyuser.hive.hosts:HS2_HOST;hadoop.proxyuser.hive.groups:*;datanucleus.autoStartMechanism:SchemaTable
+  HIVE_DB_HOST: "host.docker.internal:5432"
+  HIVE_DB_NAME: metastore
+  HIVE_DB_USER: hive
+  HIVE_DB_PASS: hive
+  HIVE_CONF_PARAMS: fs.s3a.path.style.access=true;fs.s3a.endpoint=http://minio:9000;fs.s3a.access.key=presto;fs.s3a.secret.key=presto00
 
 service:
   type: clusterIP
+  ports:
+    - name: thrift
+      port: 9083
+      targetPort: 9083
+      protocol: TCP
 
 autoscaling:
   enabled: true

@@ -25,6 +25,8 @@ if [ -d ${HIVE_CONF_DIR}/templates ]; then
   done
 fi
 
+/opt/apache-hive-metastore-3.0.0-bin/bin/schematool -initSchema -dbType postgres
+
 HIVE_START_CMD="/opt/hive-metastore/bin/start-metastore"
 
 log "INFO" "Starting Hive Metastore service. Command: ${HIVE_START_CMD}"
