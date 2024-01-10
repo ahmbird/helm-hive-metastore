@@ -5,6 +5,9 @@ metadata:
   labels:
     {{- include "hive-metastore.labels" $ | trim | nindent 4 }}
 spec:
+{{- if .Values.updateStrategy }}
+strategy: {{- toYaml .Values.updateStrategy | nindent 4 }}
+{{- end }}
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
 {{- end }}

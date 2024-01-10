@@ -7,7 +7,17 @@ nameOverride: null
 ## Following the documentation, given Hive Metastore is stateless we could have more than one instance.
 ## https://cwiki.apache.org/confluence/display/Hive/AdminManual+Metastore+Administration
 replicaCount: 1
-
+## @param updateStrategy.type WordPress deployment strategy type
+## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+## e.g:
+## updateStrategy:
+##  type: RollingUpdate
+##  rollingUpdate:
+##    maxSurge: 25%
+##    maxUnavailable: 25%
+##
+updateStrategy:
+  type: RollingUpdate
 ## Default Hive image and tag. Please build image locally before applying this.
 image:
   name: hive-metastore
