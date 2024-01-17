@@ -1,6 +1,6 @@
 FROM openjdk:8-slim
 LABEL maintainer="Amom Mendes"
-LABEL hive-metastore-version="3.0.0"
+LABEL hive-metastore-version="3.1.0"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG HADOOP_VERSION=3.2.0
 
@@ -17,7 +17,7 @@ RUN curl -sfSL https://github.com/hairyhenderson/gomplate/releases/download/v3.6
 # Set Hadoop/HiveMetastore variables and Classpath
 ENV HADOOP_HOME="/opt/hadoop"
 ENV METASTORE_HOME="/opt/hive-metastore"
-ENV HADOOP_CLASSPATH="${HADOOP_HOME}/share/hadoop/tools/lib/*:${METASTORE_HOME}/lib"
+ENV HADOOP_CLASSPATH="${HADOOP_HOME}/share/hadoop/tools/lib/*:${HADOOP_HOME}/share/hadoop/common/*:${HADOOP_HOME}/share/hadoop/client/*:${HADOOP_HOME}/share/hadoop/hdfs/lib/*:${HADOOP_HOME}/share/hadoop/hdfs/*:${HADOOP_HOME}/share/hadoop/mapreduce/*:${METASTORE_HOME}/lib"
 ENV PATH="${HADOOP_HOME}/bin:${METASTORE_HOME}/lib/:${HADOOP_HOME}/share/hadoop/tools/lib/:/opt/postgresql-jdbc.jar:${PATH}"
 
 # Download and extract the Hadoop binary package.
