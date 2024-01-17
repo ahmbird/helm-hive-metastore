@@ -1,6 +1,6 @@
 FROM openjdk:8-slim
 LABEL maintainer="Amom Mendes"
-LABEL hive-metastore-version="3.1.0"
+LABEL hive-metastore-version="3.1.3"
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ARG HADOOP_VERSION=3.2.0
 
