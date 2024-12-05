@@ -47,6 +47,8 @@ spec:
           volumeMounts:
           - name: hive-conf-templates
             mountPath: /opt/hive-metastore/conf/templates
+      imagePullSecrets:
+      - name: {{ .Values.image.pullSecret }}
       volumes:
       - name: hive-conf-templates
         configMap:
